@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Usuarios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f1;
+            color: #1c2b2a;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #0f766e;
+            color: #fff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        header a {
+            color: #fff;
+        }
+
+        main {
+            max-width: 960px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        section {
+            background: #fff;
+            border: 1px solid #cfdad8;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        h2 {
+            margin: 0 0 1rem;
+            font-size: 1.15rem;
+        }
+
+        .campos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        label {
+            font-size: .9rem;
+        }
+
+        input {
+            width: 100%;
+            margin-top: .3rem;
+            padding: .55rem;
+            border: 1px solid #9db3b0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .acciones {
+            margin-top: 1rem;
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: .55rem 1rem;
+            border: 0;
+            border-radius: 6px;
+            background: #0f766e;
+            color: #fff;
+            font-size: .95rem;
+            cursor: pointer;
+        }
+
+        button.sec {
+            background: #5b6f6d;
+        }
+
+        button.del {
+            background: #b42318;
+        }
+
+        #mensaje {
+            margin-top: .8rem;
+            min-height: 1.3rem;
+            font-size: .9rem;
+        }
+
+        .ok {
+            color: #0f766e;
+        }
+
+        .error {
+            color: #b42318;
+        }
+
+        .busqueda {
+            display: flex;
+            gap: .6rem;
+            margin-bottom: 1rem;
+        }
+
+        .busqueda input {
+            margin: 0;
+        }
+
+        .tabla {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .92rem;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: .5rem;
+            border-bottom: 1px solid #cfdad8;
+        }
+
+        td button {
+            padding: .3rem .7rem;
+            font-size: .85rem;
+            margin-right: .3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Gestión de usuarios</h1>
+        <a href="/logout">Cerrar sesión</a>
+    </header>
+
+    <main>
+        <section>
+            <h2 id="titulo">Registrar usuario</h2>
+            <form id="frmUsuario">
+                <input type="hidden" id="idUsuario">
+                <div class="campos">
+                    <label>Usuario <input type="text" id="usuario" maxlength="35" required></label>
+                    <label>Clave <input type="password" id="clave" maxlength="35"></label>
+                    <label>Nombre <input type="text" id="nombre" maxlength="85" required></label>
+                    <label>Dirección <input type="text" id="direccion" maxlength="100" required></label>
+                    <label>Teléfono <input type="text" id="telefono" maxlength="9" placeholder="7777-7777"
+                            required></label>
+                </div>
+                <div class="acciones">
+                    <button type="submit" id="btnGuardar">Guardar</button>
+                    <button type="button" id="btnCancelar" class="sec">Limpiar</button>
+                </div>
+                <div id="mensaje" role="status"></div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Buscar usuarios</h2>
+            <div class="busqueda">
+                <input type="search" id="buscar" placeholder="Buscar por usuario o nombre">
+                <button type="button" id="btnBuscar">Buscar</button>
+            </div>
+            <div class="tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="/usuarios.js"></script>
+</body>
+
+</html>
